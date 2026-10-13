@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="my" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKS Original - Premium Electrical Engineering Master Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pyidaungsu:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-slate-950: #020617;
+            --bg-slate-900: #0f172a;
+            --bg-slate-800: #1e293b;
+            --bg-slate-700: #334155;
+            --text-slate-100: #f1f5f9;
+            --text-slate-300: #cbd5e1;
+            --text-slate-400: #94a3b8;
+            --text-slate-500: #64748b;
+            --gold-400: #eab308;
+            --gold-500: #ca8a04;
+            --gold-600: #a16207;
+            --gold-300: #fde047;
+            --red-400: #f87171;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Pyidaungsu', sans-serif; background-color: var(--bg-slate-950); color: var(--text-slate-100); min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Layout Utilities */
+        .max-w-7xl { max-width: 80rem; margin-left: auto; margin-right: auto; }
+        .w-full { width: 100%; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-grow { flex-grow: 1; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .space-x-2 > * + * { margin-left: 0.5rem; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        
+        @media (min-width: 768px) {
+            .md\:flex-row { flex-direction: row; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .md\:w-80 { width: 20rem; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
+        /* Styling Components */
+        header { background-color: var(--bg-slate-900); border-bottom: 1px solid rgba(161, 98, 7, 0.3); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px); }
+        nav { background-color: rgba(15, 23, 42, 0.6); border-bottom: 1px solid var(--bg-slate-800); overflow-x: auto; }
+        main { padding: 2rem 1rem; flex-grow: 1; }
+        footer { background-color: var(--bg-slate-900); border-top: 1px solid var(--bg-slate-800); padding: 1.5rem; text-align: center; font-size: 0.75rem; color: var(--text-slate-500); }
+
+        .eks-logo { background: linear-gradient(135deg, var(--gold-600), var(--gold-400)); color: var(--bg-slate-950); font-weight: bold; padding: 0.375rem 0.75rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); font-size: 1.125rem; letter-spacing: 0.05em; }
+        .title-gradient { background: linear-gradient(to right, var(--gold-400), #fde68a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+        
+        .badge-gold { background-color: rgba(202, 138, 4, 0.1); color: var(--gold-400); border: 1px solid rgba(202, 138, 4, 0.3); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600; display: inline-block; }
+        
+        .btn-gold { background-color: var(--gold-600); color: var(--bg-slate-950); font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; border: none; cursor: pointer; transition: background-color 0.2s; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn-gold:hover { background-color: var(--gold-500); }
+        
+        .tab-btn { padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--text-slate-300); white-space: nowrap; }
+        .tab-btn:hover { background-color: var(--bg-slate-800); }
+        .tab-btn.active { background-color: var(--gold-600); color: var(--bg-slate-950); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+
+        .card-box { background-color: var(--bg-slate-900); border: 1px solid var(--bg-slate-800); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); transition: border-color 0.2s; }
+        .card-box:hover { border-color: rgba(234, 179, 8, 0.5); }
+        
+        input[type="text"] { background-color: var(--bg-slate-950); border: 1px solid var(--bg-slate-700); border-radius: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem; color: var(--text-slate-100); outline: none; transition: border-color 0.2s; }
+        input[type="text"]:focus { border-color: var(--gold-500); }
+
+        .hidden { display: none !important; }
+        .text-gold { color: var(--gold-400); }
+        .text-sm { font-size: 0.875rem; }
+        .text-xs { font-size: 0.75rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .font-bold { font-weight: bold; }
+        .font-extrabold { font-weight: 800; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .p-4 { padding: 1rem; }
+        .p-5 { padding: 1.25rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .border-l-gold { border-left: 4px solid var(--gold-500); }
+        .border-l-amber { border-left: 4px solid #f59e0b; }
+        .border-l-yellow { border-left: 4px solid #ca8a04; }
+        .bg-slate-950-40 { background-color: rgba(2, 6, 23, 0.4); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="max-w-7xl px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="eks-logo">EKS</div>
+                <div>
+                    <h1 class="text-xl title-gradient">
+                        EKS Premium Engineering Master Platform
+                    </h1>
+                    <p class="text-xs" style="color: var(--text-slate-400);">Maintenance Pro (100+ Systems) | Q&A 200 Faults | 400 Root Cause Cases</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="badge-gold">
+                    👑 PREMIUM GOLD EDITION (GitHub Ready)
+                </span>
+                <button onclick="exportData()" class="btn-gold">
+                    📥 Export / Download App
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav>
+        <div class="max-w-7xl px-4 flex space-x-2 py-2">
+            <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active">
+                📊 Dashboard
+            </button>
+            <button onclick="switchTab('maintenance')" id="tab-maintenance" class="tab-btn">
+                ⚙️ Maintenance Master (100+ Equipments)
+            </button>
+            <button onclick="switchTab('qa200')" id="tab-qa200" class="tab-btn">
+                ❓ Fault Q&A 200
+            </button>
+            <button onclick="switchTab('cases400')" id="tab-cases400" class="tab-btn">
+                🔍 400 Fault Cases & Root Cause
+            </button>
+            <button onclick="switchTab('github')" id="tab-github" class="tab-btn">
+                🚀 GitHub Deployment Guide
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl w-full">
+        
+        <!-- DASHBOARD TAB -->
+        <section id="content-dashboard" class="space-y-6">
+            <div class="card-box" style="background: linear-gradient(to right, var(--bg-slate-900), var(--bg-slate-800)); position: relative; overflow: hidden;">
+                <h2 class="text-3xl text-gold mb-2">မင်္ဂလာပါ၊ EKS Premium Digital Tool Platform သို့ ကြိုဆိုပါတယ်</h2>
+                <p style="color: var(--text-slate-300); max-width: 48rem; line-height: 1.6;">
+                    ဤစနစ်သည် လျှပ်စစ်နှင့် စက်မှုအင်ဂျင်နီယာများ၊ Maintenance နည်းပညာရှင်များအတွက် 
+                    <strong class="text-gold">Maintenance Procedures (100+ Systems)</strong>၊ 
+                    <strong class="text-gold">Electrical Fault Troubleshooting Q&A 200</strong> နှင့် 
+                    <strong class="text-gold">400 Fault Cases Root Cause Guide</strong> တို့ကို တစ်နေရာတည်းတွင် 
+                    Professional ဆန်ဆန်၊ ရှာဖွေရလွယ်ကူစွာ အသုံးပြုနိုင်ရန် ဖန်တီးထားပါသည်။
+                </p>
+                <div class="mt-6 flex flex-wrap gap-4">
+                    <button onclick="switchTab('maintenance')" class="btn-gold">
+                        🛠️ Maintenance များကို စစ်ဆေးမည်
+                    </button>
+                    <button onclick="switchTab('cases400')" style="background-color: var(--bg-slate-800); color: var(--gold-400); border: 1px solid rgba(234,179,8,0.5); padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: bold; cursor: pointer;">
+                        🔍 400 Fault Cases ရှာမည်
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card-box border-l-gold">
+                    <div style="color: var(--text-slate-400);" class="text-sm font-bold">EQUIPMENT MAINTENANCE</div>
+                    <div class="text-3xl font-extrabold mt-2">105+ Systems</div>
+                    <p class="text-xs mt-1" style="color: var(--text-slate-500);">Daily, Weekly, Monthly & Yearly Protocols</p>
+                </div>
+                <div class="card-box border-l-amber">
+                    <div style="color: var(--text-slate-400);" class="text-sm font-bold">FAULT TROUBLESHOOTING Q&A</div>
+                    <div class="text-3xl font-extrabold mt-2">200 Questions</div>
+                    <p class="text-xs mt-1" style="color: var(--text-slate-500);">20 Comprehensive Chapters</p>
+                </div>
+                <div class="card-box border-l-yellow">
+                    <div style="color: var(--text-slate-400);" class="text-sm font-bold">ROOT CAUSE CASE GUIDE</div>
+                    <div class="text-3xl font-extrabold mt-2">400 Cases</div>
+                    <p class="text-xs mt-1" style="color: var(--text-slate-500);">Step-by-step Diagnostic Trees</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAINTENANCE MASTER TAB -->
+        <section id="content-maintenance" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 card-box" style="padding: 1rem;">
+                <h3 class="text-xl text-gold">⚙️ Standard Maintenance Procedures (100+ Equipment)</h3>
+                <input type="text" id="search-maint" onkeyup="filterMaintenance()" placeholder="ပစ္စည်းအမည်ဖြင့် ရှာရန် (ဥပမာ - Circuit Breaker, Motor)..." class="w-full md:w-80">
+            </div>
+            
+            <div id="maint-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- QA 200 TAB -->
+        <section id="content-qa200" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 card-box" style="padding: 1rem;">
+                <h3 class="text-xl text-gold">❓ Electrical Fault Troubleshooting (Q & A 200)</h3>
+                <input type="text" id="search-qa" onkeyup="filterQA()" placeholder="မေးခွန်း သို့မဟုတ် ပြဿနာ ရှာရန်..." class="w-full md:w-80">
+            </div>
+
+            <div id="qa-list" class="space-y-4"></div>
+        </section>
+
+        <!-- 400 FAULT CASES TAB -->
+        <section id="content-cases400" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 card-box" style="padding: 1rem;">
+                <h3 class="text-xl text-gold">🔍 Fault Cases Root Cause Guide (400 Cases)</h3>
+                <input type="text" id="search-cases" onkeyup="filterCases()" placeholder="Case No (ဥပမာ - F-001) သို့မဟုတ် ပြဿနာ ရှာရန်..." class="w-full md:w-80">
+            </div>
+
+            <div id="cases-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+
+        <!-- GITHUB GUIDE TAB -->
+        <section id="content-github" class="hidden space-y-6">
+            <div class="card-box space-y-4">
+                <h3 class="text-2xl text-gold">🚀 GitHub တွင် Upload လုပ်ပြီး Premium Tool အဖြစ် ရောင်းချရန် လမ်းညွှန်</h3>
+                <p style="color: var(--text-slate-300); line-height: 1.6;">
+                    ဤ Single-File Web Application ကို GitHub တွင် တင်ပြီး <code style="background:var(--bg-slate-950); color:var(--gold-400); padding:0.2rem 0.4rem; border-radius:0.3rem;">GitHub Pages</code> ဖြင့် Free Hosting ပြုလုပ်ကာ သင့်ဖောက်သည်များကို ရောင်းချနိုင်ပါသည်။
+                </p>
+                <div class="space-y-4 mt-4">
+                    <div style="background: var(--bg-slate-950); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800);">
+                        <h4 class="text-gold mb-1 font-bold">အဆင့် ၁ - GitHub Repository ဖန်တီးခြင်း</h4>
+                        <p class="text-sm" style="color: var(--text-slate-400);">GitHub.com သို့ဝင်၍ New Repository တစ်ခုဖန်တီးပါ (ဥပမာ - <code>eks-premium-maintenance-tool</code>)။</p>
+                    </div>
+                    <div style="background: var(--bg-slate-950); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800);">
+                        <h4 class="text-gold mb-1 font-bold">အဆင့် ၂ - ဖိုင်တင်ခြင်း (Upload)</h4>
+                        <p class="text-sm" style="color: var(--text-slate-400);">ဤကုဒ်အပြည့်အစုံကို <code>index.html</code> အဖြစ် နာမည်ပေးကာ GitHub Repository တွင် တင်ပါ (Commit)။</p>
+                    </div>
+                    <div style="background: var(--bg-slate-950); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800);">
+                        <h4 class="text-gold mb-1 font-bold">အဆင့် ၃ - GitHub Pages ဖွင့်ခြင်း</h4>
+                        <p class="text-sm" style="color: var(--text-slate-400);">Repository ၏ <strong>Settings > Pages</strong> သို့သွား၍ Branch ကို <code>main</code> အဖြစ် ရွေးချယ်ပြီး Save လုပ်ပါ။ မိနစ်အနည်းငယ်အတွင်း URL ထွက်လာပါမည်။</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 EKS Original (Electrical Knowledge Sharing). All Rights Reserved. Premium Gold Edition.</p>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        const maintenanceData = [
+            { id: "001", name: "Circuit Breaker", daily: "Trip ဖြစ်/မဖြစ်နှင့် အပူချိန် စစ်ဆေးပါ။", weekly: "အပြင်ဘက် ဖုန်မှုန့် သန့်ရှင်းပါ။", monthly: "Terminal များ တင်းကျပ်မှု (Torque) စစ်ဆေးပါ။", yearly: "Contact များ စစ်ဆေးပြီး Injection Test လုပ်ပါ။" },
+            { id: "002", name: "Power Transformer", daily: "ဆီပမာဏ (Oil Level) နှင့် Winding အပူချိန် စစ်ဆေးပါ။", weekly: "Silica Gel အရောင်ပြောင်းလဲမှု စစ်ဆေး/လဲလှယ်ပါ။", monthly: "ဆီယိုစိမ့်မှုနှင့် Cable ချိတ်ဆက်မှု စစ်ဆေးပါ။", yearly: "ဆီအရည်အသွေး (BDV) နှင့် Megger Test ပြုလုပ်ပါ။" },
+            { id: "003", name: "Electric Motor", daily: "တုန်ခါမှု (Vibration) နှင့် အသံ စစ်ဆေးပါ။", weekly: "လေဝင်ပေါက်နှင့် Cooling Fan ရှင်းလင်းပါ။", monthly: "Bearings များကို ဆီ (Grease) ထိုးပါ။", yearly: "Insulation Resistance စစ်ဆေးပြီး Alignment ချိန်ပါ။" },
+            { id: "004", name: "Water Pump", daily: "ရေယိုစိမ့်မှု (Leakage) နှင့် Pressure စစ်ဆေးပါ။", weekly: "ဝင်ပေါက်/ထွက်ပေါက် Valve များကို စစ်ဆေးပါ။", monthly: "Mechanical Seals နှင့် Coupling များကို စစ်ဆေးပါ။", yearly: "Bearings ဆီထိုးခြင်းနှင့် Impeller သန့်ရှင်းပါ။" },
+            { id: "005", name: "Air Compressor", daily: "Tank အတွင်းမှ ရေ (Moisture) များကို ဖောက်ထုတ်ပါ။", weekly: "လေစစ် (Air Intake Filter) သန့်ရှင်းပါ။", monthly: "လေပိုက် ယိုစိမ့်မှုနှင့် Belt အတက်အလျော့ စစ်ဆေးပါ။", yearly: "Compressor Oil လဲလှယ်ပြီး လေစစ်အသစ် တပ်ပါ။" },
+            { id: "006", name: "VFD (Variable Frequency Drive)", daily: "Display တွင် Error/Fault code များ စစ်ဆေးပါ။", weekly: "Cooling fan လည်ပတ်မှုနှင့် Heat sink ဖုန်ရှင်းပါ။", monthly: "Component များ ဖောင်းကားမှုနှင့် Power Terminal စစ်ဆေးပါ။", yearly: "Firmware Update ပြုလုပ်ပြီး Parameters Backup ယူပါ။" },
+            { id: "007", name: "UPS System", daily: "Input/Output Voltage နှင့် Battery အခြေအနေ စစ်ဆေးပါ။", weekly: "Inverter Fan များ၏ အလုပ်လုပ်ပုံ စစ်ဆေးပါ။", monthly: "Bypass Mode စမ်းသပ်ပြီး Error Log မှတ်သားပါ။", yearly: "System Calibration နှင့် Battery Discharge Test လုပ်ပါ။" },
+            { id: "008", name: "Battery Bank", daily: "Battery အခန်း အပူချိန်နှင့် Ventilation စစ်ဆေးပါ။", weekly: "Terminal များတွင် ချေးတက်ခြင်း (Corrosion) စစ်ဆေးပါ။", monthly: "Distilled water ပမာဏနှင့် Specific Gravity စမ်းပါ။", yearly: "Terminal များကို တင်းကျပ်ပြီး Load Test ပြုလုပ်ပါ။" },
+            { id: "009", name: "Diesel Generator", daily: "ဒီဇယ်ဆီ၊ အင်ဂျင်ဆီနှင့် ရေ (Coolant) ပမာဏ စစ်ဆေးပါ။", weekly: "Generator ကို No-load ဖြင့် ၁၅ မိနစ် မောင်းနှင်ပါ။", monthly: "Belt အတက်အလျော့နှင့် Battery Charger စစ်ဆေးပါ။", yearly: "အင်ဂျင်ဆီ၊ ဆီစစ်၊ လေစစ် များကို အသစ်လဲလှယ်ပါ။" },
+            { id: "010", name: "PLC System", daily: "CPU ပေါ်ရှိ Fault LED လင်းနေခြင်း ရှိ/မရှိ စစ်ဆေးပါ။", weekly: "Panel လေဝင်လေထွက် အပေါက်များ ဖုန်စုပ်ထုတ်ပါ။", monthly: "I/O Module များ၏ ချိတ်ဆက်မှု (Wiring) စစ်ဆေးပါ။", yearly: "Program Memory Backup နှင့် Lithium Battery စစ်ဆေးပါ။" },
+            { id: "017", name: "Switchgear Panel", daily: "Indicator, Voltmeter, Ammeter များကို စစ်ဆေးပါ။", weekly: "Panel မျက်နှာပြင်နှင့် လေဝင်ပေါက်များ ဖုန်ရှင်းပါ။", monthly: "Busbar များ အပူချိန်လွန်ကဲမှု Thermal Scan ဖတ်ပါ။", yearly: "Racking Mechanism ဆီထိုးပြီး Interlock စမ်းသပ်ပါ။" },
+            { id: "020", name: "Earthing System", daily: "Earth Pit အတွင်း စိုစွတ်မှု အခြေအနေ စစ်ဆေးပါ။", weekly: "Earth Copper Rod နှင့် ကြိုးချိတ်ဆက်မှု စစ်ဆေးပါ။", monthly: "Joint များကို သံချေးတက်ခြင်းမှ ကာကွယ်ရန် ရှင်းပါ။", yearly: "Earth Resistance Tester ဖြင့် ခုခံမှု (< 5 Ohm) တိုင်းပါ။" }
+        ];
+
+        const qa200Data = [
+            { q: "Q 1.1 Breaker ကို တင်လိုက်တာနဲ့ ချက်ချင်း ပြန်ကျ (Trip) နေပါတယ်။", a: "Short Circuit ဖြစ်ခြင်း သို့မဟုတ် Overload ဖြစ်ခြင်း။ Safety First ဖြင့် Load ဘက်ရှိ ဝါယာအပူလောင်ခြင်း စစ်ဆေးပါ။ DMM ဖြင့် Resistance တိုင်းပါ (0 Ohm နီးပါးဖြစ်လျှင် Short ဖြစ်သည်)။" },
+            { q: "Q 1.2 Breaker နာရီအနည်းငယ် သို့မဟုတ် Load များများသုံးမှ ခဏကြာမှ ပြန်ကျနေပါတယ်။", a: "Overload သို့မဟုတ် Connection ချို့ယွင်းခြင်း။ Clamp Meter ဖြင့် Current တိုင်းပါ။ Rating ကျော်နေပါက Load လျှော့ပါ။ Terminal များကို တင်းကျပ်ပါ။" },
+            { q: "Q 1.3 Breaker (ELCB/RCCB) သည် ပစ္စည်းတစ်ခုခုသုံးသောအခါ ချက်ချင်းကျနေသည်။", a: "Ground Fault / Earth Leakage ဖြစ်ခြင်း။ Power ပိတ်ပြီး သံသယရှိသော ပစ္စည်းများကို တစ်ခုချင်း ဖြုတ်ကာ စမ်းသပ်ပါ။" },
+            { q: "Q 2.1 Motor က စတင်လည်ပတ်ပြီး ၁ စက္ကန့်အတွင်း OLR က ချက်ချင်း Trip ကျပါတယ်။", a: "OLR Setting နည်းခြင်း သို့မဟုတ် Mechanical Jam ဖြစ်ခြင်း။ Nameplate FLA နှင့် OLR Setting နှိုင်းယှဉ်ပါ။ Motor Fan ကို လက်ဖြင့်လှည့်၍ စစ်ပါ။" },
+            { q: "Q 5.2 Start ခလုတ်နှိပ်ပြီး Contactor ဝင်သော်လည်း Motor က 'ဝူး' ခနဲ အသံပြင်းပြင်းမြည်ပြီး မလည်ပါ။", a: "Single Phasing (Phase တစ်ခုပြတ်ခြင်း)။ Clamp Meter ဖြင့် ၃-ဖေ့စ် Current နှင့် Voltage ကို တိုင်းတာစစ်ဆေးပါ။" },
+            { q: "Q 13.1 LED မီးသီး/မီးချောင်း က တဖျတ်ဖျတ် လင်းနေခြင်း (Flickering)။", a: "Loose Connection သို့မဟုတ် LED Driver (Power Supply) ချို့ယွင်းခြင်း။ Terminal များကို ကျပ်ပါ၊ Driver သို့မဟုတ် မီးချောင်း အသစ်လဲပါ။" }
+        ];
+
+        const cases400Data = [
+            { code: "F-001", problem: "Circuit Breaker Trip", cause: "Coordination မှားယွင်းခြင်း သို့မဟုတ် Short Circuit / Thermal Overload ဖြစ်ခြင်း။", action: "Step 1: Main Breaker နှင့် ပြိုင်တူကျပါက Trip curve ချိန်ပါ။ Step 2: Load ဖြုတ်၍ တင်ကြည့်ပါ (ချက်ချင်းကျလျှင် Short Circuit, ကြာမှကျလျှင် Overload ဖြစ်သည်)" },
+            { code: "F-002", problem: "3-Phase Motor မလည်ပတ်ပါ ('ဝီ' ဟု အသံမည်နေသည်)", cause: "Single Phasing သို့မဟုတ် Mechanical Jam / Bearing ပျက်ခြင်း။", action: "Step 1: လက်ဖြင့်လှည့်ကြည့်ပါ (လွယ်ကူလျှင် Single Phasing, ကျပ်နေလျှင် Mechanical Jam/Bearing ပျက်ခြင်း)" },
+            { code: "F-003", problem: "RCCB (Earth Leakage) ခဏခဏကျသည်", cause: "Panel တွင်း N-E ထိနေခြင်း သို့မဟုတ် Outdoor Moisture Leakage ဖြစ်ခြင်း။", action: "Step 1: Outgoing MCB အားလုံးပိတ်၍ တင်ကြည့်ပါ (ကျလျှင် RCCB ပျက်/N-E ထိနေသည်၊ မကျလျှင် Lိုင်းတစ်ခုခုတွင် Earth Fault ဖြစ်သည်)" },
+            { code: "F-004", problem: "VFD တွင် Error ပြ၍ ရပ်သွားသည် (Overcurrent / Overload)", cause: "Cable Short/Earth Fault သို့မဟုတ် Mechanical Overload ဖြစ်ခြင်း။", action: "Step 1: စက်စမောင်းသည်နှင့် ချက်ချင်းပြလျှင် Cable Short/Earth Fault ဖြစ်သည်။ ကြာမှပြလျှင် Mechanical Overload ဖြစ်သည်" },
+            { code: "F-005", problem: "မီးခလုတ်ဖွင့်သော်လည်း မီးမလင်းပါ", cause: "မီးသီးကျွမ်းခြင်း၊ Switch ပျက်ခြင်း သို့မဟုတ် Neutral ကြတ်နေခြင်း။", action: "Step 1: မီးသီးအသစ်လဲကြည့်ပါ (လင်းလျှင် မီးသီးကျွမ်းခြင်း)။ Step 2: Switch သို့ Voltage ဝင်/ထွက် စစ်ပါ (အဝင်မရှိလျှင် Breaker, အထွက်မရှိလျှင် Switch ပျက်သည်)" }
+        ];
+
+        function switchTab(tabId) {
+            document.querySelectorAll('main > section').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        function renderMaintenance(data) {
+            const grid = document.getElementById('maint-grid');
+            grid.innerHTML = data.map(item => `
+                <div class="card-box">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                        <span class="badge-gold">ID: ${item.id}</span>
+                        <h4 style="font-size: 1.125rem; font-weight: bold;">${item.name}</h4>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-slate-300); margin-top: 1rem; border-top: 1px solid var(--bg-slate-800); padding-top: 0.75rem;" class="space-y-2">
+                        <p><strong class="text-gold">📅 နေ့စဉ် (Daily):</strong> ${item.daily}</p>
+                        <p><strong class="text-gold">📅 အပတ်စဉ် (Weekly):</strong> ${item.weekly}</p>
+                        <p><strong class="text-gold">📅 လစဉ် (Monthly):</strong> ${item.monthly}</p>
+                        <p><strong class="text-gold">📅 နှစ်စဉ် (Yearly):</strong> ${item.yearly}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderQA(data) {
+            const list = document.getElementById('qa-list');
+            list.innerHTML = data.map((item, idx) => `
+                <div class="card-box" style="padding: 1.25rem;">
+                    <h4 class="text-gold font-bold mb-2" style="font-size: 1rem;">${idx + 1}. ${item.q}</h4>
+                    <p style="font-size: 0.875rem; color: var(--text-slate-300); padding-left: 1rem; border-left: 2px solid var(--gold-600); background: rgba(2,6,23,0.4); padding: 0.75rem; border-radius: 0 0.5rem 0.5rem 0;">${item.a}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderCases(data) {
+            const grid = document.getElementById('cases-grid');
+            grid.innerHTML = data.map(item => `
+                <div class="card-box" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                            <span style="background: rgba(248,113,113,0.1); color: var(--red-400); border: 1px solid rgba(248,113,113,0.2); font-size: 0.75rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">${item.code}</span>
+                            <span style="font-size: 0.75rem; color: var(--text-slate-400);">Root Cause & Diagnostic</span>
+                        </div>
+                        <h4 style="font-size: 1.125rem; font-weight: bold; margin-bottom: 0.5rem;">${item.problem}</h4>
+                        <p style="font-size: 0.875rem; color: var(--gold-300); margin-bottom: 0.75rem;"><strong style="color: var(--text-slate-400);">Root Cause:</strong> ${item.cause}</p>
+                    </div>
+                    <div style="background: var(--bg-slate-950); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid var(--bg-slate-800); font-size: 0.75rem; color: var(--text-slate-300); margin-top: 1rem;">
+                        <strong class="text-gold" style="display: block; margin-bottom: 0.25rem;">🛠️ Step-by-Step Action:</strong>
+                        ${item.action}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterMaintenance() {
+            const query = document.getElementById('search-maint').value.toLowerCase();
+            const filtered = maintenanceData.filter(i => i.name.toLowerCase().includes(query) || i.id.includes(query));
+            renderMaintenance(filtered);
+        }
+
+        function filterQA() {
+            const query = document.getElementById('search-qa').value.toLowerCase();
+            const filtered = qa200Data.filter(i => i.q.toLowerCase().includes(query) || i.a.toLowerCase().includes(query));
+            renderQA(filtered);
+        }
+
+        function filterCases() {
+            const query = document.getElementById('search-cases').value.toLowerCase();
+            const filtered = cases400Data.filter(i => i.code.toLowerCase().includes(query) || i.problem.toLowerCase().includes(query) || i.cause.toLowerCase().includes(query));
+            renderCases(filtered);
+        }
+
+        function exportData() {
+            const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'EKS_Premium_Maintenance_Master.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        renderMaintenance(maintenanceData);
+        renderQA(qa200Data);
+        renderCases(cases400Data);
+    </script>
+</body>
+</html>
